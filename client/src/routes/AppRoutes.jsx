@@ -7,7 +7,7 @@ import ErrorBoundary from "@/component/ErrorBoundary";
 
 // render pages
 const RootLayout = lazy(() => import("@/layout/RootLayout"));
-const Home = lazy(() => import("@/pages/home/Home"));
+const Home = lazy(() => import("@/pages/home/Home"));1
 const ContactUs = lazy(() => import("@/pages/contactUs/ContactUs"));
 const AuthLayout = lazy(() => import("@/layout/AuthLayout"));
 const Login = lazy(() => import("@/pages/login/Login"));
@@ -28,7 +28,7 @@ const Inpatients = lazy(() =>import("@/pages/sidebarPages/inpatient/Inpatients")
 const Users = lazy(() => import("@/pages/sidebarPages/user/User"));
 const Settings = lazy(() => import("@/pages/sidebarPages/settingsss/Settings"));
 const Account = lazy(() =>import("@/pages/sidebarPages/settingsss/account/Account"));
-const Password = lazy(() =>import("@/pages/sidebarPages/settingsss/password/password"));
+const Password = lazy(() =>import("@/pages/sidebarPages/settingsss/password/Password"));
 const HealthRecord = lazy(() =>import("@/pages/sidebarPages/settingsss/healthRecord/HealthRecord"));
 const PatientAppointments = lazy(() => import("@/pages/sidebarPages/appointment/PatientAppointments"));
 const PatientPayments = lazy(() =>import("@/pages/sidebarPages/payment/PatientPayments"));
