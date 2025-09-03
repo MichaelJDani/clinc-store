@@ -1,7 +1,7 @@
 import PageWrapper from "@/component/PageWrapper";
 // import { DummyData } from "@/utils/constant";
 // import AddUser from "@/features/users/AddUser";
-import { getAllDoctor } from "@/api/doctors"; 
+import { getAllDoctor } from "@/api/doctors";
 import Search from "@/component/Search";
 import Filter from "@/features/doctors/Filter";
 import { useSearchParams } from "react-router";
@@ -34,7 +34,6 @@ export default function Doctors() {
 
   const doctors = data?.data?.data?.doctors || [];
 
-
   return (
     <PageWrapper>
       <div className="flex justify-between items-center">
@@ -60,23 +59,15 @@ export default function Doctors() {
             <ErrorAlert error={error?.response?.data?.message} />
           ) : (
             <>
-              {doctors.length > 0 ? (
-                <>
-                  <Suspense fallback={<SkeletonTable />}>
-                    <Table doctors={doctors} />
-                  </Suspense>
-                  <Paginate
-                    totalPages={totalPages}
-                    hasMore={hasMore}
-                    handlePageChange={handlePageChange}
-                    currentPage={currentPage}
-                  />
-                </>
-              ) : (
-                <p className="mt-4 font-semibold text-center">
-                  No Doctors Found
-                </p>
-              )}
+              <Suspense fallback={<SkeletonTable />}>
+                <Table doctors={doctors} />
+              </Suspense>
+              <Paginate
+                totalPages={totalPages}
+                hasMore={hasMore}
+                handlePageChange={handlePageChange}
+                currentPage={currentPage}
+              />
             </>
           )}
         </>

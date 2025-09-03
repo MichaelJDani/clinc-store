@@ -28,7 +28,7 @@ export default function Rooms() {
   if (roomType) params.append("roomType", roomType);
   if (roomStatus) params.append("roomStatus", roomStatus);
   const { isPending, isError, data, error } = useQuery({
-  queryKey: ["getAllRooms", {accessToken,query, roomType, roomStatus}],
+    queryKey: ["getAllRooms", { accessToken, query, roomType, roomStatus }],
     queryFn: () => getAllRooms(params, accessToken),
   });
 
@@ -37,12 +37,8 @@ export default function Rooms() {
     hasMore: data?.data?.data?.meta?.hasMore || false,
     currentPage: data?.data?.data?.meta?.currentPage || 1,
   });
- 
 
   const rooms = data?.data?.data?.rooms || [];
-  
-  
-
 
   return (
     <>
@@ -61,35 +57,26 @@ export default function Rooms() {
           </Search>
         </div>
         {isPending ? (
-                  <SkeletonTable />
-                ) : (
-
-        <>
-                   {isError ? (
-                     <ErrorAlert error={error?.response?.data?.message} />
-                   ) : (
-                     <>
-                       {rooms?.length > 0 ? (
-                         <>
-                           <Suspense fallback={<SkeletonTable />}>
-                             <Table rooms={rooms} />
-                           </Suspense>
-                           <Paginate
-                             totalPages={totalPages}
-                             hasMore={hasMore}
-                             handlePageChange={handlePageChange}
-                             currentPage={currentPage}
-                           />
-                         </>
-                       ) : (
-                         <p className="mt-6 font-semibold text-center">
-                           No Rooms Found
-                         </p>
-                       )}
-                     </>
-                   )}
-                 </>
-           )}
+          <SkeletonTable />
+        ) : (
+          <>
+            {isError ? (
+              <ErrorAlert error={error?.response?.data?.message} />
+            ) : (
+              <>
+                <Suspense fallback={<SkeletonTable />}>
+                  <Table rooms={rooms} />
+                </Suspense>
+                <Paginate
+                  totalPages={totalPages}
+                  hasMore={hasMore}
+                  handlePageChange={handlePageChange}
+                  currentPage={currentPage}
+                />
+              </>
+            )}
+          </>
+        )}
       </PageWrapper>
     </>
   );

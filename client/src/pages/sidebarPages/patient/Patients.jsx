@@ -32,11 +32,8 @@ export default function Patients() {
     hasMore: data?.data?.data?.meta?.hasMore || false,
     currentPage: data?.data?.data?.meta?.currentPage || 1,
   });
- 
 
   const patients = data?.data?.data?.patients || [];
-  
-  
 
   return (
     <PageWrapper>
@@ -63,23 +60,15 @@ export default function Patients() {
             <ErrorAlert error={error?.response?.data?.message} />
           ) : (
             <>
-              {patients.length > 0 ? (
-                <>
-                  <Suspense fallback={<SkeletonTable />}>
-                    <Table patients={patients} />
-                  </Suspense>
-                  <Paginate
-                    totalPages={totalPages}
-                    hasMore={hasMore}
-                    handlePageChange={handlePageChange}
-                    currentPage={currentPage}
-                  />
-                </>
-              ) : (
-                <p className="mt-4 font-semibold text-center">
-                  No patient found
-                </p>
-              )}
+              <Suspense fallback={<SkeletonTable />}>
+                <Table patients={patients} />
+              </Suspense>
+              <Paginate
+                totalPages={totalPages}
+                hasMore={hasMore}
+                handlePageChange={handlePageChange}
+                currentPage={currentPage}
+              />
             </>
           )}
         </>
